@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import "./utils/permission";
 import "normalize.css/normalize.css";
 import "@/assets/style/index.scss";
 import {
@@ -20,7 +21,10 @@ import {
   DropdownMenu,
   DropdownItem,
   Scrollbar,
-  Button
+  Button,
+  Row,
+  Col,
+  Dialog
 } from "element-ui";
 
 Vue.use(Container);
@@ -39,6 +43,9 @@ Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
 Vue.use(Scrollbar);
 Vue.use(Button);
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Dialog);
 
 Vue.config.productionTip = false;
 
