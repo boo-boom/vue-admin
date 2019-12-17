@@ -8,14 +8,17 @@ export const constantRoutes = [
   {
     path: "/login",
     name: "login",
+    meta: { title: "登录", icon: "dashboard" },
     component: () => import(/* webpackChunkName: "login" */ "../views/Login.vue")
   },
   {
     path: "/401",
+    meta: { title: "401", icon: "dashboard" },
     component: () => import("@/views/error-page/401")
   },
   {
     path: "/404",
+    meta: { title: "404", icon: "dashboard" },
     component: () => import("@/views/error-page/404")
   },
   { path: "*", redirect: "/404" }
