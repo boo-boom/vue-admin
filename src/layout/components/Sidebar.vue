@@ -2,18 +2,19 @@
   <div class="scrollbar">
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
-        :default-openeds="['0']"
+        :default-active="this.$route.path"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
-        :unique-opened="false"
+        :unique-opened="true"
         :active-text-color="variables.menuActiveText"
         :collapse-transition="false"
+        router
         mode="vertical"
       >
-        <template v-for="(route, index) in permission_routes">
-          <el-submenu :index="index + ''" :key="route.path" v-if="route.meta">
-            <template slot="title"><i class="el-icon-message"></i>{{ route.meta.title }}</template>
-            <el-menu-item :index="index + '-' + childIndex" v-for="(item, childIndex) in route.children" :key="item.path">{{ item.meta.title }}</el-menu-item>
+        <template v-for="route in permission_routes">
+          <el-submenu :index="route.path" :key="route.path" v-if="route.meta">
+            <template slot="title"><i :class="'el-icon-' + route.meta.icon"></i>{{ route.meta.title }}</template>
+            <el-menu-item :index="item.path" v-for="item in route.children" :key="item.path">{{ item.meta.title }}</el-menu-item>
           </el-submenu>
         </template>
       </el-menu>

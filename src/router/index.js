@@ -28,12 +28,12 @@ export const asyncRoutes = [
     path: "/",
     redirect: "/home",
     component: Layout,
-    meta: { title: "关于111", icon: "dashboard" },
+    meta: { title: "关于111", icon: "message" },
     children: [
       {
-        path: "home",
+        path: "/home",
         name: "home",
-        meta: { title: "首页", icon: "dashboard", roles: ["admin", "editor"] },
+        meta: { title: "首页", roles: ["admin", "editor"] },
         component: () => import(/* webpackChunkName: "home" */ "@/views/Home.vue")
       }
     ]
@@ -42,18 +42,18 @@ export const asyncRoutes = [
     path: "/test",
     redirect: "/test/about",
     component: Layout,
-    meta: { title: "关于222", icon: "dashboard" },
+    meta: { title: "关于222", icon: "message" },
     children: [
       {
-        path: "about",
+        path: "/test/about",
         name: "about",
-        meta: { title: "关于", icon: "dashboard", roles: ["editor"] },
+        meta: { title: "关于", roles: ["editor"] },
         component: () => import(/* webpackChunkName: "about" */ "../views/About.vue")
       },
       {
-        path: "/test",
+        path: "/test/test",
         name: "test",
-        meta: { title: "测试test", icon: "dashboard", roles: ["editor"] },
+        meta: { title: "测试test", roles: ["editor"] },
         component: () => import(/* webpackChunkName: "testPage" */ "../views/TestPage.vue")
       }
     ]
@@ -61,7 +61,7 @@ export const asyncRoutes = [
   {
     path: "/testPage",
     name: "testPage",
-    meta: { title: "测试", icon: "dashboard", roles: ["admin"] },
+    meta: { title: "测试", icon: "message", roles: ["admin"] },
     component: () => import(/* webpackChunkName: "testPage" */ "../views/TestPage.vue")
   },
   { path: "*", redirect: "/404" }
