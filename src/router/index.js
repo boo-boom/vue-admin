@@ -20,8 +20,7 @@ export const constantRoutes = [
     path: "/404",
     meta: { title: "404", icon: "dashboard" },
     component: () => import("@/views/error-page/404")
-  },
-  { path: "*", redirect: "/404" }
+  }
 ];
 
 export const asyncRoutes = [
@@ -29,6 +28,7 @@ export const asyncRoutes = [
     path: "/",
     redirect: "/home",
     component: Layout,
+    meta: { title: "关于111", icon: "dashboard" },
     children: [
       {
         path: "home",
@@ -42,12 +42,19 @@ export const asyncRoutes = [
     path: "/test",
     redirect: "/test/about",
     component: Layout,
+    meta: { title: "关于222", icon: "dashboard" },
     children: [
       {
         path: "about",
         name: "about",
         meta: { title: "关于", icon: "dashboard", roles: ["editor"] },
         component: () => import(/* webpackChunkName: "about" */ "../views/About.vue")
+      },
+      {
+        path: "/test",
+        name: "test",
+        meta: { title: "测试test", icon: "dashboard", roles: ["editor"] },
+        component: () => import(/* webpackChunkName: "testPage" */ "../views/TestPage.vue")
       }
     ]
   },
@@ -56,7 +63,8 @@ export const asyncRoutes = [
     name: "testPage",
     meta: { title: "测试", icon: "dashboard", roles: ["admin"] },
     component: () => import(/* webpackChunkName: "testPage" */ "../views/TestPage.vue")
-  }
+  },
+  { path: "*", redirect: "/404" }
 ];
 
 const createRouter = () =>
