@@ -5,18 +5,13 @@
         :default-active="this.$route.path"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
-        :unique-opened="true"
+        :unique-opened="false"
         :active-text-color="variables.menuActiveText"
         :collapse-transition="false"
         router
         mode="vertical"
       >
-        <template v-for="route in permission_routes">
-          <el-submenu :index="route.path" :key="route.path" v-if="route.meta">
-            <template slot="title"><i :class="'el-icon-' + route.meta.icon"></i>{{ route.meta.title }}</template>
-            <el-menu-item :index="item.path" v-for="item in route.children" :key="item.path">{{ item.meta.title }}</el-menu-item>
-          </el-submenu>
-        </template>
+        <sidebar-item v-for="route in permission_routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -25,12 +20,11 @@
 <script>
 import { mapGetters } from "vuex";
 import variables from "@/assets/style/variables.scss";
+import SidebarItem from "./SidebarItem";
 
 export default {
   name: "Sidebar",
-  mounted() {
-    console.log(this.permission_routes);
-  },
+  components: { SidebarItem },
   computed: {
     variables() {
       return variables;

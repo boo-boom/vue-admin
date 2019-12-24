@@ -26,33 +26,34 @@ export const constantRoutes = [
 export const asyncRoutes = [
   {
     path: "/",
-    redirect: "/home",
+    redirect: "/dashboard",
     component: Layout,
     meta: { title: "关于111", icon: "message" },
     children: [
       {
-        path: "/home",
-        name: "home",
+        path: "dashboard",
+        name: "Dashboard",
         meta: { title: "首页", roles: ["admin", "editor"] },
         component: () => import(/* webpackChunkName: "home" */ "@/views/Home.vue")
       }
     ]
   },
   {
-    path: "/test",
-    redirect: "/test/about",
+    path: "/example",
+    redirect: "/example/about",
     component: Layout,
-    meta: { title: "关于222", icon: "message" },
+    meta: { title: "Example", icon: "message", roles: ["editor"] },
     children: [
       {
-        path: "/test/about",
-        name: "about",
+        path: "about",
+        name: "About",
         meta: { title: "关于", roles: ["editor"] },
         component: () => import(/* webpackChunkName: "about" */ "../views/About.vue")
       },
       {
-        path: "/test/test",
-        name: "test",
+        hidden: true,
+        path: "test",
+        name: "Test",
         meta: { title: "测试test", roles: ["editor"] },
         component: () => import(/* webpackChunkName: "testPage" */ "../views/TestPage.vue")
       }
@@ -60,11 +61,11 @@ export const asyncRoutes = [
   },
   {
     path: "/testPage",
-    name: "testPage",
+    name: "TestPage",
     meta: { title: "测试", icon: "message", roles: ["admin"] },
     component: () => import(/* webpackChunkName: "testPage" */ "../views/TestPage.vue")
   },
-  { path: "*", redirect: "/404" }
+  { path: "*", redirect: "/404", hidden: true }
 ];
 
 const createRouter = () =>
@@ -76,5 +77,9 @@ const createRouter = () =>
   });
 
 const router = createRouter();
+export function resetRouter() {
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher;
+}
 
 export default router;
